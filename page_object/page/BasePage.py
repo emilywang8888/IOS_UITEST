@@ -5,12 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import os, time
 from page_object.driver.Client import IOSClient
+from page_object.mylog.Log import MyLog
 import yaml
 import re
 
 class BasePage(object):
     _back = 'label == "navback"'
-    path = '/Users/wangqiaoling/Desktop/appium_online_9/page_object/picture/'
+    path = '/Users/wangqiaoling/Desktop/appiumfile/iOS_test_code/page_object/picture/'
     _skip = 'label contains "Skip"'
     _ok = 'label contains "OK"'
 
@@ -35,6 +36,7 @@ class BasePage(object):
             except:
                 print('没有找到%s元素' % xpath)
             logging.error('没有找到%s元素' % xpath)   # 写入日志
+            self.mylog('没有找到%s元素' % xpath)
             self.save_screen_shot()
 
 
@@ -46,6 +48,7 @@ class BasePage(object):
             except:
                 print('没有找到%s' % value)
             logging.error(f'没有找到{value}元素')  # 写入日志
+            self.mylog(f'没有找到{value}元素')
             self.save_screen_shot()
 
     def save_screen_shot(self,file_path = None):
@@ -59,6 +62,10 @@ class BasePage(object):
             file_path = file_path + images_name + ".png"
             # print(file_path)
         self.driver.save_screenshot(file_path)
+
+    def mylog(self,message):
+        mylog = MyLog()
+        mylog.error(message)
 
     def is_element_exist(self, element):
         source = self.driver.page_source
