@@ -4,13 +4,17 @@ install_app:
   server: http://localhost:4723/wd/hub
   implicitly_wait: 10
   caps:
-    android:
-      platformName: android
-      deviceName: hogwarts
-      appPackage: com.xueqiu.android
-      appActivity: .view.WelcomeActivityAlias
-      autoGrantPermissions: true
     ios:
+      platformName: iOS
+      deviceName: iPhone X
+      platformVersion: 14.6
+      app: /Users/wangqiaoling/Desktop/GeLin(fixbug)/Amemori.ipa
+      udid: 74a600ead04f82b86cf6f95764bc7607b40c8c3a
+      automationName: XCUITest
+      unicodeKeyboard: true
+      resetKeyboard: true
+      autoAcceptAlerts: true
+    
 
 
 
@@ -18,17 +22,17 @@ restart_app:
   server: http://localhost:4723/wd/hub
   implicitly_wait: 10
   caps:
-    android:
-      platformName: android
-      deviceName: hogwarts
-      appPackage: com.xueqiu.android
-      appActivity: .view.WelcomeActivityAlias
-      autoGrantPermissions: true
+    ios:
+      platformName: iOS
+      deviceName: iPhone X
+      bundleId: com.szglint.amemori
+      udid: 74a600ead04f82b86cf6f95764bc7607b40c8c3a
+      automationName: XCUITest
       noReset: true
       unicodeKeyboard: true
       resetKeyboard: true
-    ios: {}
+    
     wxmp: {}
 
 
-platform: android
+platform: ios

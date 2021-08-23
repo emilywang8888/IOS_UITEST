@@ -2,19 +2,19 @@ from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 import yaml
 
-class AndroidClient(object):
+class IOSClient(object):
 
     driver:WebDriver
-    platform="android"
+    platform="IOS"
     @classmethod
     def install_app(cls) -> WebDriver:
 
         # caps = {}
         # #如果有必要，进行第一次安装
         # # caps["app"]=''
-        # caps["platformName"] = "android"
+        # caps["platformName"] = "IOS"
         # caps["deviceName"] = "hogwarts"
-        # caps["appPackage"] = "com.xueqiu.android"
+        # caps["appPackage"] = "com.xueqiu.IOS"
         # caps["appActivity"] = ".view.WelcomeActivityAlias"
         # #解决第一次启动的问题
         # caps["autoGrantPermissions"] = "true"
@@ -30,9 +30,9 @@ class AndroidClient(object):
     def restart_app(cls) -> WebDriver:
         # caps = {}
         #
-        # caps["platformName"] = "android"
+        # caps["platformName"] = "IOS"
         # caps["deviceName"] = "hogwarts"
-        # caps["appPackage"] = "com.xueqiu.android"
+        # caps["appPackage"] = "com.xueqiu.IOS"
         # caps["appActivity"] = ".view.WelcomeActivityAlias"
         # #为了更快的启动，并保留之前的数据，从而可以保存上一个case执行后的状态
         # caps['noReset']=True
