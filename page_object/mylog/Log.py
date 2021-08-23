@@ -2,8 +2,8 @@ import logging,time
 import os
 
 # log_path是存放日志的路径
-cur_path = r'/Users/wangqiaoling/Desktop/appium_online_9/page_object'
-log_path = os.path.join(os.path.dirname(cur_path), 'mylog')
+cur_path = r'/Users/wangqiaoling/Desktop/appiumfile/IOS_UITEST/page_object'
+log_path = os.path.join(os.path.dirname(cur_path), 'app_log')
 # 如果不存在这个logs文件夹，就自动创建一个
 if not os.path.exists(log_path):os.mkdir(log_path)
 

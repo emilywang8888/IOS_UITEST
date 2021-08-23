@@ -60,11 +60,11 @@ class TestHomePage(object):
 
     @allure.feature('test myhomepage')
     @allure.story('test change nickname')
-    @pytest.mark.parametrize("nickname",("Hi",))
+    @pytest.mark.parametrize("nickname",("Hello",))
     def test_nickname(self,nickname):
         self.homepage.change_nick_name(nickname)
         time.sleep(3)
-        assert self.homepage.is_element_exist("Hi")
+        assert self.homepage.is_element_exist("Hello")
 
     @allure.feature('test myhomepage')
     @allure.story('test cancel nickname')

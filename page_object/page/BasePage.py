@@ -1,5 +1,5 @@
 from appium.webdriver.webdriver import WebDriver
-import cv2
+# import cv2
 import logging
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -36,8 +36,8 @@ class BasePage(object):
             except:
                 print('没有找到%s元素' % xpath)
             logging.error('没有找到%s元素' % xpath)   # 写入日志
-            self.mylog('没有找到%s元素' % xpath)
-            self.save_screen_shot()
+        self.mylog('没有找到%s元素' % xpath)
+        self.save_screen_shot()
 
 
     def find_element_predicate(self, value):
@@ -48,8 +48,8 @@ class BasePage(object):
             except:
                 print('没有找到%s' % value)
             logging.error(f'没有找到{value}元素')  # 写入日志
-            self.mylog(f'没有找到{value}元素')
-            self.save_screen_shot()
+        self.mylog(f'没有找到{value}元素')
+        self.save_screen_shot()
 
     def save_screen_shot(self,file_path = None):
         if file_path == None:
