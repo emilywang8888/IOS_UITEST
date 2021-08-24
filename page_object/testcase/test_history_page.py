@@ -22,15 +22,14 @@ class TestHistory(object):
 
     @allure.feature('test history page')
     @allure.story('test delete photo')
-    @pytest.mark.skip
     def test_del(self):
         self.history.open_pic()
         self.history.delete_pic()
-        assert self.history.is_element_exist('deleted')
+        assert self.history.is_element_exist('Successfully deleted')
+        self.history.ok()
 
     @allure.feature('test history page')
     @allure.story('test share photo')
-    @pytest.mark.skip
     def test_share(self):
         self.history.open_pic()
         self.history.share()
@@ -38,9 +37,18 @@ class TestHistory(object):
 
     @allure.feature('test history page')
     @allure.story('test download photo')
-    @pytest.mark.skip
     def test_download(self):
         self.history.open_pic()
         self.history.download_pic()
-        assert self.history.is_element_exist('successfully')
+        time.sleep(2)
+        assert self.history.is_element_exist('Image saved successfully')
+
+    @allure.feature('test history page')
+    @allure.story('scroll enhance photo')
+    def test_scroll(self):
+        self.history.open_pic()
+        if self.history.is_element_exist('Enchance'):
+            for i in range(5):
+                self.history.scroll()
+
 

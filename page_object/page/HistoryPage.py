@@ -8,11 +8,14 @@ class HistoryPage(BasePage):
     _download = 'label == "组 125"'  # 下载按钮
     _share = 'label == "组 107"'  # 分享按钮
     _delete = 'label == "组 124"'  # 删除按钮
-    _delete_sure = 'labe contains "Delete"'
+    _delete_sure = 'label == "Delete"'
+    _before = 'label == "Before"'
+    _after = 'label == "After"'
+    _drag = '//*[@name="drag"]/..'
 
     def open_pic(self):
-        x = self.get_size()[0]
-        y = self.get_size()[1]
+        x = self.get_size()['width']
+        y = self.get_size()['height']
         self.tap(x / 3 / 2+100, y / 4 + y/4 / 2)
 
     def download_pic(self):
@@ -28,3 +31,7 @@ class HistoryPage(BasePage):
     def swipe_screen(self,count):
         for i in range(count):
             self.swipe_up()
+
+    def scroll(self):
+        self.drag(self.find_element_xpath(self._drag),self.find_element_predicate(self._before))
+        self.drag(self.find_element_xpath(self._drag),self.find_element_predicate(self._after))
