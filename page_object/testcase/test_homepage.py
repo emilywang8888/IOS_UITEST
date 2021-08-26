@@ -20,19 +20,6 @@ class TestHomePage(object):
         self.homepage.back()
 
     @allure.feature('test myhomepage')
-    @allure.story('test change avatar in six picture')
-    def test_avatar(self):
-        self.homepage.goto_avatar()
-        assert self.homepage.is_element_exist('Waiting')
-
-    @allure.feature('test myhomepage')
-    @allure.story('test change avatar from album')
-    def test_avatar_choose(self):
-        self.homepage.change_avatar()
-        time.sleep(3)
-        assert self.homepage.is_element_exist('Edit Profile')
-
-    @allure.feature('test myhomepage')
     @allure.story('test click user manual')
     def test_user_manual(self):
         self.homepage.goto_User_manual()
@@ -60,11 +47,12 @@ class TestHomePage(object):
 
     @allure.feature('test myhomepage')
     @allure.story('test change nickname')
-    @pytest.mark.parametrize("nickname",("Hello",))
+    @pytest.mark.parametrize("nickname",("Hi",))
+    @pytest.mark.ios
     def test_nickname(self,nickname):
         self.homepage.change_nick_name(nickname)
         time.sleep(3)
-        assert self.homepage.is_element_exist("Hello")
+        assert self.homepage.is_element_exist("Hi")
 
     @allure.feature('test myhomepage')
     @allure.story('test cancel nickname')
@@ -72,6 +60,19 @@ class TestHomePage(object):
     def test_cancel_nickname(self,nickname):
         self.homepage.cancel_nick_name(nickname)
         time.sleep(2)
+
+    @allure.feature('test myhomepage')
+    @allure.story('test change avatar in six picture')
+    def test_avatar(self):
+        self.homepage.goto_avatar()
+        assert self.homepage.is_element_exist('Waiting')
+
+    @allure.feature('test myhomepage')
+    @allure.story('test change avatar from album')
+    def test_avatar_choose(self):
+        self.homepage.change_avatar()
+        time.sleep(6)
+        assert self.homepage.is_element_exist('Edit Profile')
 
 
 class TestContactUs(object):

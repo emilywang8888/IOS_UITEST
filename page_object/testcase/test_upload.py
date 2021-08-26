@@ -71,6 +71,7 @@ class TestUpload(object):
 
     @allure.feature('test upload photo')
     @allure.story('test take a photo')
+    @pytest.mark.ios
     def test_take_pic(self):
         with allure.step("点击拍照按钮"):
             self.upload_photo.take_pic()

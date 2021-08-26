@@ -97,12 +97,11 @@ class BasePage(object):
         self.driver.tap([(x, y)])
 
     # 向上滑动
-    def swipe_up(self, t=500, n=1):
+    def swipe_up(self, t=100, n=1):
         s = self.get_size()
         x1 = s['width'] * 0.5  # x坐标
         y1 = s['height'] * 0.75  # 起点y坐标
         y2 = s['height'] * 0.25  # 终点y坐标
-        print('手机的尺寸是： ', s)
         for i in range(n):
             self.driver.swipe(x1, y1, x1, y2, t)
 

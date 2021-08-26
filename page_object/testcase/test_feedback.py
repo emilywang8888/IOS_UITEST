@@ -43,6 +43,6 @@ class TestFeedbackPage(object):
         self.feedback.add_feedback(email,content)
         self.feedback.add_feedback_pic(5)
         self.feedback.submit()
-        time.sleep(3)
+        time.sleep(10)
         assert self.feedback.is_element_exist('Submitted Successfully')
 

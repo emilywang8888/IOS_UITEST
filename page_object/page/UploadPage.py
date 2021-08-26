@@ -6,9 +6,9 @@ from page_object.page.MainPage import MainPage
 
 class UploadPage(BasePage):
 
-    _upload_pic = 'label == "Upload a Photo" AND name == "Upload a Photo" AND value == "Upload a Photo"'
+    _upload_pic = 'label contains "Upload a Photo"'
     _color_loc = 'label == "联合 11"'  # 上色位置
-    _apply_loc = 'label == "Apply" AND name == "Apply" AND value == "Apply"'
+    _apply_loc = 'label contains "Apply"'
     _cut_loc = 'label == "组 407"'  # 裁剪
     _cancle_cut = 'label == "组 408"'  # 撤销裁剪
     _rotate = 'label == "112233444"'  # 旋转
@@ -17,7 +17,7 @@ class UploadPage(BasePage):
     _three_loc = 'label == "组 95"'  # 3:2
     _four_loc = 'label == "组 99"'  # 4:3
     _sixteeth_loc = 'label == "组 101"'  # 16:9
-    _go_home = 'label == "Home" AND name == "Home" AND value == "Home"'  # 回到主页
+    _go_home = 'label contains "Home"'  # 回到主页
     _take_pic = 'label == "Take a Photo"' # 拍照位置
     _pic_capture = 'label == "Take Picture"' # 拍照
     _user_pic = 'label == "Use Photo" AND name == "Use Photo" AND value == "Use Photo"'  # 应用图片
@@ -27,7 +27,7 @@ class UploadPage(BasePage):
         x = self.get_size()['width']
         y = self.get_size()['height']
         time.sleep(2)
-        self.tap(x/3/2,(y-300)/4+(y-300)/2)
+        self.tap(x/3/2,(y-300)/4+(y-350)/2)
         time.sleep(2)
 
     def colorize(self):

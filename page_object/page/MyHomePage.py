@@ -27,7 +27,7 @@ class MyHomePage(BasePage):
     _change_nick_name = 'label == "组 2162"'
     _user_manual = 'label == "User Manual"'
     _terms = 'label == "Terms of Service"'
-    _policy = 'label == "Private Policy"'
+    _policy = 'label == "Privacy Policy"'
     _about_us = 'label == "About Us"'
     _contact_us = 'label == "Contact Us"'
     _feedback = 'label == "Feedback"'
@@ -38,7 +38,7 @@ class MyHomePage(BasePage):
     _submit = '//*[contains(@name,"Submit")]/..'  # 提交按钮
     _cancel = 'label contains "Cancel"' # 取消修改昵称按钮
     _logout = 'label == "Log Out" AND name == "Log Out" AND type == "XCUIElementTypeButton"'  # 退出按钮
-    _upload_pic = 'label == "Upload a Photo" AND name == "Upload a Photo" AND value == "Upload a Photo"'  # 上传头像
+    _upload_pic = 'label contains "Upload a Photo"'  # 上传头像
 
 
 
@@ -71,7 +71,7 @@ class MyHomePage(BasePage):
         x = self.get_size()['width']
         y = self.get_size()['height']
         time.sleep(2)
-        self.tap(x / 3 / 2, (y - 300) / 4 + (y - 300) / 2)
+        self.tap(x / 3 / 2, (y - 300) / 4 + (y - 350) / 2)
         self.find_element_predicate(self._confirm_pic).click()
 
     def goto_contact_us(self):

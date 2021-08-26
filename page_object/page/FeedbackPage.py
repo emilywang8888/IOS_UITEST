@@ -5,7 +5,7 @@ import time
 
 class Feedback(BasePage):
 
-    _submit_feedback = 'label == "Submit" AND name == "Submit" AND value == "Submit"'  # 提交按钮
+    _submit_feedback = 'label contains "Submit"'  # 提交按钮
     _email = 'value == "Email"'  # 邮箱地址
     _feed_content = 'type == "XCUIElementTypeTextView"'  # 内容
     _add_pic = "//*[@type='XCUIElementTypeStaticText']/.."   # 添加图片的+号地址
