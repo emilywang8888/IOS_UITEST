@@ -1,14 +1,14 @@
 import time
-
 from page_object.page.BasePage import BasePage
 from page_object.page.LoginPage import LoginPage
 
 
+
 class Contact_us(BasePage):
 
-    _fb = 'label == "组 722"'  # 联系我们的fb   Amemori AI Enhancer
-    _tw = 'label == "组 720"'  # 联系我们的tw   创建账号
-    _ins = 'label == "组 721"'  # 联系我们的ins   Amemoriapp
+    _fb = 'label == "组 722"'  # 联系我们的fb
+    _tw = 'label == "组 720"'  # 联系我们的tw
+    _ins = 'label == "组 721"'  # 联系我们的ins
 
     def click_fb(self):
         self.find_element_predicate(self._fb).click()
@@ -32,13 +32,15 @@ class MyHomePage(BasePage):
     _contact_us = 'label == "Contact Us"'
     _feedback = 'label == "Feedback"'
     _sign_out = 'label == "Sign Out"'
-    _confirm_pic = 'label == "蒙版组 40"' # 更改头像时的√按钮地址
-    _avater = '//*[contains(@name,"蒙版组")]/..' # 预设头像地址
+    _confirm_pic = 'label == "蒙版组 40"'  # 更改头像时的√按钮地址
+    _avatar = '//*[contains(@name,"蒙版组")]/..'  # 预设头像地址
     _nick_name_input = 'value == "Maximum 20 letters"'  # 修改昵称输入框
     _submit = '//*[contains(@name,"Submit")]/..'  # 提交按钮
     _cancel = 'label contains "Cancel"' # 取消修改昵称按钮
     _logout = 'label == "Log Out" AND name == "Log Out" AND type == "XCUIElementTypeButton"'  # 退出按钮
-    _upload_pic = 'label contains "Upload a Photo"'  # 上传头像
+    _avatar_list = '//*[contains(@name,"Photo")]/..//*[contains(@type,"TypeOther")]/*[contains(@type,"TypeButton")]'  # 预设6个头像的list地址
+    _upload_pic = 'label contains "Upload a Photo"'  # 上传图片按钮
+    _album_loc = "//*[contains(@type,'TypeCell')]"  # 相册列表
 
 
 
@@ -60,19 +62,24 @@ class MyHomePage(BasePage):
         from page_object.page.FeedbackPage import Feedback
         return Feedback()
 
-    def goto_avatar(self):
-        self.find_element_xpath(self._avater).click()
+    def goto_avatar(self, index):
+        self.find_element_xpath(self._avatar).click()
         time.sleep(3)
-        self.tap(50,320)
+        # self.tap(50,320)
+        avatar = self.find_element_ablum(self._avatar_list)
+        avatar[index].click()
 
-    def change_avatar(self):
-        self.find_element_xpath(self._avater).click()
+    def change_avatar(self, index):
+        self.find_element_xpath(self._avatar).click()
         self.find_element_predicate(self._upload_pic).click()
-        x = self.get_size()['width']
-        y = self.get_size()['height']
-        time.sleep(2)
-        self.tap(x / 3 / 2, (y - 300) / 4 + (y - 350) / 2)
+        ele = self.find_element_ablum(self._album_loc)
+        ele[index].click()
+        # x = self.get_size()['width']
+        # y = self.get_size()['height']
+        # time.sleep(2)
+        # self.tap(x / 3 / 2, (y - 300) / 4 + (y - 350) / 2)
         self.find_element_predicate(self._confirm_pic).click()
+
 
     def goto_contact_us(self):
         self.find_element_predicate(self._contact_us).click()

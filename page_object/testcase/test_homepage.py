@@ -63,15 +63,17 @@ class TestHomePage(object):
 
     @allure.feature('test myhomepage')
     @allure.story('test change avatar in six picture')
-    def test_avatar(self):
-        self.homepage.goto_avatar()
+    @pytest.mark.parametrize("index", (0, 1, 2, 3, 4, 5))
+    def test_avatar(self, index):
+        self.homepage.goto_avatar(index)
         assert self.homepage.is_element_exist('Waiting')
 
     @allure.feature('test myhomepage')
     @allure.story('test change avatar from album')
-    def test_avatar_choose(self):
-        self.homepage.change_avatar()
-        time.sleep(6)
+    @pytest.mark.parametrize("index", (2,))
+    def test_avatar_choose(self, index):
+        self.homepage.change_avatar(index)
+        time.sleep(10)
         assert self.homepage.is_element_exist('Edit Profile')
 
 

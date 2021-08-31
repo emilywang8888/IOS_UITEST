@@ -5,7 +5,9 @@ import pytest
 from page_object.page.App import App
 from page_object.page.MainPage import MainPage
 
+
 class TestHistory(object):
+
     @classmethod
     def setup_class(cls):
         cls.historyPage = App.main()
@@ -24,13 +26,6 @@ class TestHistory(object):
         self.history.ok()
 
     @allure.feature('test history page')
-    @allure.story('test share photo')
-    def test_share(self):
-        self.history.open_pic()
-        self.history.share()
-        assert self.history.is_element_exist('Facebook')
-
-    @allure.feature('test history page')
     @allure.story('test download photo')
     def test_download(self):
         self.history.open_pic()
@@ -40,6 +35,13 @@ class TestHistory(object):
         assert self.history.is_element_exist('Image saved successfully')
         self.history.ok()
         self.history.back()
+
+    @allure.feature('test history page')
+    @allure.story('test share photo')
+    def test_share(self):
+        self.history.open_pic()
+        self.history.share()
+        assert self.history.is_element_exist('Facebook')
 
     @allure.feature('test history page')
     @allure.story('scroll enhance photo')

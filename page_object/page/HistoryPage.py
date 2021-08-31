@@ -1,5 +1,7 @@
 import time
 
+from selenium.webdriver.common.by import By
+
 from page_object.page.BasePage import BasePage
 
 
@@ -12,6 +14,7 @@ class HistoryPage(BasePage):
     _before = 'label == "Before"'
     _after = 'label == "After"'
     _drag = '//*[@name="drag"]/..'
+
 
     def open_pic(self):
         x = self.get_size()['width']

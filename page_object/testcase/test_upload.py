@@ -16,9 +16,10 @@ class TestUpload(object):
 
     @allure.feature('test upload photo')
     @allure.story('test edit picture')
-    def test_edit_pic(self):
+    @pytest.mark.parametrize("index", (3,))
+    def test_edit_pic(self, index):
         with allure.step("点击上传图片按钮"):
-            self.upload_photo.upload_pic()
+            self.upload_photo.upload_pic(index)
         with allure.step("点击裁剪按钮，并点击自由裁剪按钮"):
             self.upload_photo.edit_pic()
         with allure.step("点击应用图片"):
@@ -30,8 +31,9 @@ class TestUpload(object):
 
     @allure.feature('test upload photo')
     @allure.story('test edit picture')
-    def test_cancel_edit(self):
-        self.upload_photo.upload_pic()
+    @pytest.mark.parametrize("index", (2,))
+    def test_cancel_edit(self, index):
+        self.upload_photo.upload_pic(index)
         self.upload_photo.cancel_edit()
         self.upload_photo.apply()
         assert self.upload_photo.is_element_exist('Uploading')
@@ -39,25 +41,26 @@ class TestUpload(object):
 
     @allure.feature('test upload photo')
     @allure.story('test rotate picture')
-    @pytest.mark.parametrize("index",(2,))
-    def test_rotate(self,index):
-        self.upload_photo.upload_pic()
-        self.upload_photo.ratate(index)
+    @pytest.mark.parametrize("index, count", ((3, 2),))
+    def test_rotate(self, index, count):
+        self.upload_photo.upload_pic(index)
+        self.upload_photo.ratate(count)
         self.upload_photo.apply()
         assert self.upload_photo.is_element_exist('Uploading')
         self.upload_photo.go_home()
 
     @allure.feature('test upload photo')
     @allure.story('test colorize picture')
-    def test_colorize(self):
+    @pytest.mark.parametrize("index", (4,))
+    def test_colorize(self, index):
         with allure.step("点击上传图片按钮"):
-            self.upload_photo.upload_pic()
+            self.upload_photo.upload_pic(index)
         with allure.step("点击上色按钮"):
             self.upload_photo.colorize()
         with allure.step("点击应用图片按钮"):
             self.upload_photo.apply()
         with allure.step("设置等待20秒"):
-            time.sleep(20)
+            time.sleep(30)
         with allure.step("设置断言，返回是否有Video字样"):
             assert self.upload_photo.is_element_exist('Video')
         with allure.step("点击返回按钮，返回应用图片页面"):
@@ -78,6 +81,6 @@ class TestUpload(object):
         with allure.step("点击应用图片按钮"):
             self.upload_photo.apply()
         with allure.step("等待20秒"):
-            time.sleep(20)
+            time.sleep(30)
         with allure.step("断言是否存在Video字样"):
             assert self.upload_photo.is_element_exist('Photo')

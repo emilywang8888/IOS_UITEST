@@ -14,6 +14,7 @@ class Feedback(BasePage):
     _add_feed_pic = '//*[contains(@type,"TypeOther")]//*[contains(@type,"TypeImage")]/..'
     _feed_loc = 'label contains "We value your feedback"'  # 点击空白处让键盘消失
     _del_pic = '//*[@name="删除"]'  # 图片上的删除按钮
+    _album_list = '//*[contains(@type,"TypeOther")]/*[contains(@type,"TypeImage")]'  # 相册列表
 
 
 
@@ -22,7 +23,7 @@ class Feedback(BasePage):
         self.find_element_predicate(self._feed_content).send_keys(content)
         self.find_element_predicate(self._feed_loc).click()
 
-    def add_feedback_pic(self,index):
+    def add_feedback_pic(self, index):
         for i in range(index):
             x = self.get_size()["width"]
             self.tap(x/5/2+i*(x/5),500)
@@ -34,6 +35,8 @@ class Feedback(BasePage):
             else:
                 self.tap(50+(i-2)*50,210+(i-2)*100)
                 time.sleep(2)
+            # album = self.find_element_ablum(self._album_list)
+            # album[index].click()
         self.find_element_predicate(self._submit_feedback).click()
         time.sleep(3)
 
