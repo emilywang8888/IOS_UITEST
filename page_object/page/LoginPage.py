@@ -6,7 +6,7 @@ from page_object.page.BasePage import BasePage
 class LoginPage(BasePage):
 
     _Apple_loc = 'value == "Continue with Apple"'
-    _Google_loc =  'value CONTAINS "Google"'
+    _Google_loc = 'value CONTAINS "Google"'
     _Facebook_loc = 'label == "Continue with Facebook"'
     _Terms_loc = 'label == "Terms of Service"'
     _Privacy_loc = 'label == "Private Policy"'
@@ -17,7 +17,7 @@ class LoginPage(BasePage):
         time.sleep(2)
         self.find_element_predicate(self._continue_pwd).click()
 
-    def send_pwd(self,pwd):
+    def send_pwd(self, pwd):
         self.find_element_predicate('label == "%s"'% pwd).click()
 
 

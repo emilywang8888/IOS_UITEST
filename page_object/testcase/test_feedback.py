@@ -38,10 +38,10 @@ class TestFeedbackPage(object):
 
     @allure.feature('test feedback')
     @allure.story('emali & content is not null, add 5 pictures')
-    @pytest.mark.parametrize("email,content", [('123@163.com', 'this is a test content')])
-    def test_submit_feedback(self, email, content):
+    @pytest.mark.parametrize("email, content, index", [('123@163.com', 'this is a test content', 5)])
+    def test_submit_feedback(self, email, content, index):
         self.feedback.add_feedback(email, content)
-        self.feedback.add_feedback_pic(5)
+        self.feedback.add_feedback_pic(index)
         self.feedback.submit()
         time.sleep(10)
         assert self.feedback.is_element_exist('Submitted Successfully')

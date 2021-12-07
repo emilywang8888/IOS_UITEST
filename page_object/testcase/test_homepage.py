@@ -47,9 +47,9 @@ class TestHomePage(object):
 
     @allure.feature('test myhomepage')
     @allure.story('test change nickname')
-    @pytest.mark.parametrize("nickname",("Hi",))
+    @pytest.mark.parametrize("nickname", ("Hi",))
     @pytest.mark.ios
-    def test_nickname(self,nickname):
+    def test_nickname(self, nickname):
         self.homepage.change_nick_name(nickname)
         time.sleep(3)
         assert self.homepage.is_element_exist("Hi")
@@ -57,7 +57,7 @@ class TestHomePage(object):
     @allure.feature('test myhomepage')
     @allure.story('test cancel nickname')
     @pytest.mark.parametrize("nickname", ("Hi",))
-    def test_cancel_nickname(self,nickname):
+    def test_cancel_nickname(self, nickname):
         self.homepage.cancel_nick_name(nickname)
         time.sleep(2)
 
@@ -120,8 +120,8 @@ class TestSignOut(object):
         self.homepage.cancel_signout()
         assert self.homePage.is_element_exist("Sign Out")
 
-    @allure.feature('test logout')
-    @allure.story('test logout success')
-    def test_signout(self):
-        self.homepage.signout_success()
-        assert LoginPage().is_element_exist("Google")
+    # @allure.feature('test logout')
+    # @allure.story('test logout success')
+    # def test_signout(self):
+    #     self.homepage.signout_success()
+    #     assert LoginPage().is_element_exist("Google")

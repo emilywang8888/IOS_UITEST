@@ -6,8 +6,8 @@ install_app:
   caps:
     iossimulator:
       platformName: iOS
-      deviceName: iPhone 11
-      platformVersion: '13.0'
+      deviceName: iPhone 11 Pro
+      platformVersion: '13.5'
       bundleId: com.szglint.amemori
       automationName: XCUITest
       unicodeKeyboard: true
@@ -29,7 +29,7 @@ restart_app:
       bundleId: com.szglint.amemori
       udid: 74a600ead04f82b86cf6f95764bc7607b40c8c3a
       automationName: XCUITest
-      noReset: true
+#      noReset: true
       unicodeKeyboard: true
       resetKeyboard: true
     
@@ -37,3 +37,4 @@ restart_app:
 
 
 platform: ios
+#platform: iossimulator

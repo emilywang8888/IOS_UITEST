@@ -36,13 +36,11 @@ class MyHomePage(BasePage):
     _avatar = '//*[contains(@name,"蒙版组")]/..'  # 预设头像地址
     _nick_name_input = 'value == "Maximum 20 letters"'  # 修改昵称输入框
     _submit = '//*[contains(@name,"Submit")]/..'  # 提交按钮
-    _cancel = 'label contains "Cancel"' # 取消修改昵称按钮
+    _cancel = 'label contains "Cancel"'  # 取消修改昵称按钮
     _logout = 'label == "Log Out" AND name == "Log Out" AND type == "XCUIElementTypeButton"'  # 退出按钮
-    _avatar_list = '//*[contains(@name,"Photo")]/..//*[contains(@type,"TypeOther")]/*[contains(@type,"TypeButton")]'  # 预设6个头像的list地址
-    _upload_pic = 'label contains "Upload a Photo"'  # 上传图片按钮
+    _avatar_list = '//*[contains(@name,"Choose")]/..//*[contains(@type,"TypeOther")]/*[contains(@type,"TypeButton")]'  # 预设6个头像的list地址
+    _upload_pic = 'label contains "Choose"'  # 上传图片按钮
     _album_loc = "//*[contains(@type,'TypeCell')]"  # 相册列表
-
-
 
     def goto_User_manual(self):
         self.find_element_predicate(self._user_manual).click()

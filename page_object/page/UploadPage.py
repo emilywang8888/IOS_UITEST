@@ -1,12 +1,15 @@
 import time
 
+from appium.webdriver.common.touch_action import TouchAction
+from selenium.common.exceptions import StaleElementReferenceException
+
 from page_object.page.BasePage import BasePage
 from page_object.page.MainPage import MainPage
 
 
 class UploadPage(BasePage):
 
-    _color_loc = 'label == "联合 11"'  # 上色位置
+    _color_loc = 'label contains "联合 11"'  # 上色位置
     _apply_loc = 'label contains "Apply"'
     _cut_loc = 'label == "组 407"'  # 裁剪
     _cancle_cut = 'label == "组 408"'  # 撤销裁剪
@@ -20,19 +23,22 @@ class UploadPage(BasePage):
     _take_pic = 'label == "Take a Photo"'  # 拍照位置
     _pic_capture = 'label == "Take Picture"'  # 拍照
     _user_pic = 'label == "Use Photo" AND name == "Use Photo" AND value == "Use Photo"'  # 应用图片
-    _upload_pic = 'label contains "Upload a Photo"'  # 上传图片按钮
-    _album_loc = "//*[contains(@type,'TypeCell')]"  # 相册列表
+    _upload_pic = 'label contains "Choose"'  # 上传图片按钮
+    _album_loc = '//*[contains(@type,"TypeCell")]'  # 相册列表
+    _halloween_list = '//*[contains(@type,"TypeCell")]'  # 万圣节滤镜列表
+    _halloween_loc = '//*[contains(@type,"CollectionView")]'  # 万圣节滤镜列表的层级元素，便于滑动点击后面的元素
 
     def upload_pic(self, index):
         self.find_element_predicate(self._upload_pic).click()
-    #     x = self.get_size()['width']
-    #     y = self.get_size()['height']
-    #     time.sleep(2)
-    #     self.tap(x/3/2,(y-300)/4+(y-350)/2)
-        ele = self.find_element_ablum(self._album_loc)
-        ele[index].click()
-
-
+        self.accept_alert()
+        try:
+            ele = self.find_element_ablum(self._album_loc)
+            ele[index].click()
+        except StaleElementReferenceException as e:
+            print(f'查找元素异常{e}')
+            print('重新获取元素')
+            ele = self.find_element_ablum(self._album_loc)
+            ele[index].click()
 
     def colorize(self):
         self.find_element_predicate(self._color_loc).click()
@@ -59,10 +65,42 @@ class UploadPage(BasePage):
     def take_pic(self):
         self.find_element_predicate(self._upload_pic).click()
         self.find_element_predicate(self._take_pic).click()
+        self.accept_alert()
         self.find_element_predicate(self._pic_capture).click()
         self.find_element_predicate(self._user_pic).click()
 
-    def ratate(self,index):
+    def rotate(self, index):
         for i in range(index):
             self.find_element_predicate(self._rotate).click()
+
+    def halloween_choice(self, index):
+        eles = self.find_element_ablum(self._halloween_list)
+        time.sleep(2)
+        if index < 5:
+            eles[index].click()
+        else:
+            for i in range(1, index // 5 + 1):
+                x = self.get_size()['width']
+                y = self.get_size()['height']
+                end_x = int((20 / 375) * x)
+                start_y = int((620 / 812) * y)
+                start_x = int((350 / 375) * x)
+                # driver.swipe(350, 620, 20, 620, 1000)   # 测试机的坐标
+                self.drag_left(start_x, start_y, end_x, start_y)
+                time.sleep(5)
+                eles = self.find_element_ablum(self._halloween_list)
+                print(index - (5 * i))
+                eles[index - (5 * i)].click()
+
+
+
+
+
+
+
+
+
+
+
+
 

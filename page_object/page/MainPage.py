@@ -8,12 +8,13 @@ from page_object.page.MyHomePage import MyHomePage
 class MainPage(BasePage):
     _History_loc = 'label == "History"'
     _My_homepage = 'label == "My Homepage"'
-    _cartoon = 'label == "cartoon"'
+    _cartoon = 'label == "Cartoon Btn 01"'
     _private_img = 'name == "蒙版组 43"'
     _nick_name = 'value CONTAINS "user"'
-    _one_click = 'label == "组 2194"'
+    _one_click = 'label == "one click btn 02"'
     _coin_img = 'name == "jin_coin"'
     _coin = 'label == "5"'
+    _halloween = 'label == "monster btn 03"'
     _avater = "//*[@type='XCUIElementTypeImage' and @name='蒙版组 43']/.."  # 预设头像地址
 
     def goto_history(self):
@@ -33,6 +34,12 @@ class MainPage(BasePage):
         self.find_element_predicate(MainPage._one_click).click()
         from page_object.page.UploadPage import UploadPage
         return UploadPage()
+
+    def halloween(self):
+        self.find_element_predicate(MainPage._halloween).click()
+        from page_object.page.UploadPage import UploadPage
+        return UploadPage()
+
 
 
 
